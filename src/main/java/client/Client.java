@@ -34,6 +34,7 @@ public class Client {
                     break;
                 }
                 out.println(msg);
+                out.flush();
                 String input = in.readLine();
                 System.out.println(input);
                 clientLog.log(Level.INFO, msg);
