@@ -50,7 +50,6 @@ public class Server {
         }
     }
 
-
     public void sendMessageToAllClients(String msg) {
         for (ClientHandler o : clients) {
             o.sendMsg(msg);

@@ -5,6 +5,11 @@ import org.junit.jupiter.api.*;
 import java.io.IOException;
 
 public class SettingFileReaderTest {
+    SettingsFileReader settingsFileReader = new SettingsFileReader();
+
+    public SettingFileReaderTest() throws IOException {
+    }
+
 
     @BeforeEach
     public void init() {
@@ -12,8 +17,7 @@ public class SettingFileReaderTest {
     }
 
     @Test
-    public void settingFileReadTestGetHost() throws IOException {
-        SettingsFileReader settingsFileReader = new SettingsFileReader();
+    public void settingFileReadTestGetHost() {
 
         String host = "127.0.0.1";
 
@@ -23,8 +27,7 @@ public class SettingFileReaderTest {
     }
 
     @Test
-    public void settingFileReadTestGetPort() throws IOException {
-        SettingsFileReader settingsFileReader = new SettingsFileReader();
+    public void settingFileReadTestGetPort() {
 
         int port = 34343;
 
