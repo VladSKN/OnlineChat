@@ -17,11 +17,11 @@ public class ClientHandler implements Runnable {
     private Server server;
     private PrintWriter outMessage;
     private Scanner inMessage;
-    private static final AtomicInteger clients_count = new AtomicInteger(0);
+    private static final AtomicInteger clientsCount = new AtomicInteger(0);
 
 
     public ClientHandler(Socket socket, Server server) {
-        clients_count.getAndIncrement();
+        clientsCount.getAndIncrement();
         try {
             this.server = server;
             this.outMessage = new PrintWriter(socket.getOutputStream());
@@ -37,7 +37,7 @@ public class ClientHandler implements Runnable {
             User userClient = new User(inMessage.nextLine());
             serverLog.log(Level.INFO, userClient.getNAME() + " connected to chat.");
             server.sendMessageToAllClients("Новый участник " + userClient.getNAME()
-                    + " вошёл в чат! Клиентов в чате = " + clients_count);
+                    + " вошёл в чат! Клиентов в чате = " + clientsCount);
             while (true) {
                 if (inMessage.hasNext()) {
                     String clientMessage = inMessage.nextLine();
@@ -65,7 +65,7 @@ public class ClientHandler implements Runnable {
 
     public void close() {
         server.removeClient(this);
-        clients_count.getAndDecrement();
-        server.sendMessageToAllClients("Клиентов в чате = " + clients_count);
+        clientsCount.getAndDecrement();
+        server.sendMessageToAllClients("Клиентов в чате = " + clientsCount);
     }
 }
