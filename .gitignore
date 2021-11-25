@@ -4,9 +4,6 @@
 /target
 /build
 
-# Log file
-*.log
-
 # BlueJ files
 *.ctxt
 
