@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client {
     private final Logger clientLog = LogManager.getLogger("clientLog");
@@ -23,21 +22,13 @@ public class Client {
         Socket socket = new Socket(HOST, PORT);
 
         try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-             PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-             Scanner scanner = new Scanner(System.in)) {
-            String msg;
+             PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true)) {
             System.out.println("Добро пожаловать в сетевой чат для обмена сообщениями \n" +
                     "Введите свое Имя, для завершения введите /exit");
+            new Thread(new OutMessageClient(out)).start();
             while (true) {
-                msg = scanner.nextLine();
-                if ("/exit".equals(msg)) {
-                    break;
-                }
-                out.println(msg);
-                out.flush();
                 String input = in.readLine();
                 System.out.println(input);
-                clientLog.log(Level.INFO, msg);
                 clientLog.log(Level.INFO, input);
             }
         }
