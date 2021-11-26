@@ -25,7 +25,9 @@ public class Client {
              PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true)) {
             System.out.println("Добро пожаловать в сетевой чат для обмена сообщениями \n" +
                     "Введите свое Имя, для завершения введите /exit");
-            new Thread(new OutMessageClient(out)).start();
+            Thread outMessage = new Thread(new OutMessageClient(out));
+            outMessage.setDaemon(true);
+            outMessage.start();
             while (true) {
                 String input = in.readLine();
                 System.out.println(input);
