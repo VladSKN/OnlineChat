@@ -14,6 +14,7 @@ public class OutMessageClient implements Runnable {
     public OutMessageClient(PrintWriter printWriter){
         this.printWriter = printWriter;
     }
+    
 
     @Override
     public void run() {
