@@ -15,7 +15,6 @@ public class OutMessageClient implements Runnable {
         this.printWriter = printWriter;
     }
 
-
     @Override
     public void run() {
         Scanner scanner = new Scanner(System.in);
